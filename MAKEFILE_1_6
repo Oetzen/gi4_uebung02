@@ -1,0 +1,21 @@
+CC = gcc
+CFLAGS = -Wall -g
+LDFLAGS = 
+
+COMPRESS = gzip
+
+all: depend editor
+
+depend: gcc -MM main.c input.c > abhaengigkeiten
+
+include <abhaengigkeiten>
+
+main.o: 
+	$(CC) $(LDFLAGS) -o main.o -c main.c
+
+input.o: 
+	$(CC) $(LDFLAGS) -o input.o -c input.c
+
+editor: main.o input.o
+	$(CC) $(LDFLAGS) -o editor main.o input.o
+	

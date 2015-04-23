@@ -1,0 +1,16 @@
+CC = gcc
+CFLAGS = -Wall -g
+LDFLAGS = 
+
+COMPRESS = gzip
+
+all: main.o input.o editor
+
+main.o: main.c stdio.h string.h stdlib.h utils.h input.c
+	$(CC) $(LDFLAGS) -o main.o -c main.c
+
+input.o: input.c stdio.h string.h stdlib.h
+	$(CC) $(LDFLAGS) -o input.o -c input.c
+
+editor: main.o input.o
+	$(CC) $(LDFLAGS) -o editor main.o input.o
